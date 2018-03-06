@@ -10,54 +10,36 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/clients")
+
 public class ClientController {
 
     @Autowired
     private IClientService clientService;
 
-    @RequestMapping(
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
+    @RequestMapping(value = "/clients", method = RequestMethod.GET)
     public List<Client> getAll(){
         return clientService.findAll();
     }
-    @RequestMapping(
-            method = RequestMethod.POST,
-            consumes = MediaType.APPLICATION_JSON_VALUE
-    )
+
+    @RequestMapping(value = "/clients", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public Client registration(@RequestBody Client client) {
 
         return clientService.registartion(client);
     }
 
-
-
-    @RequestMapping(
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE,
-            path = "{id}"
-    )
+    @RequestMapping(value = "/clients/{id}", method = RequestMethod.GET)
     public Client getById(@PathVariable("id")Long id){
         return clientService.findById(id);
     }
 
-
-    @RequestMapping(
-            method = RequestMethod.PUT,
-            consumes = MediaType.APPLICATION_JSON_VALUE
-    )
-    public void update(@RequestBody Client client){
+    @RequestMapping(value = "/clients/{id}", method = RequestMethod.PUT)
+    public void update(@PathVariable("id") Long id, @RequestBody Client client){
         clientService.update(client);
     }
-    @RequestMapping(
-            method = RequestMethod.DELETE,
-            path = "{id}"
 
-    )
-    public void remove(@PathVariable("id")Long id){
+    @RequestMapping(value = "/clients/{id}", method = RequestMethod.DELETE)
+    public void remove(@PathVariable("id") Long id){
         clientService.delete(id);
     }
 }

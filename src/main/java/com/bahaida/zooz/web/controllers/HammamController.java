@@ -11,49 +11,34 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/hammams")
+
 public class HammamController {
     @Autowired
     private IHammamService hammamService;
 
-    @RequestMapping(
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
+    @RequestMapping(value = "/hammams", method = RequestMethod.GET)
     public List<Hammam> getAll(){
         return hammamService.findAll();
     }
-    @RequestMapping(
-            method = RequestMethod.POST,
-            consumes = MediaType.APPLICATION_JSON_VALUE
-    )
+
+    @RequestMapping(value = "/hammams", method = RequestMethod.POST)
     public Hammam save(@RequestBody Hammam hammam) {
 
         return hammamService.save(hammam);
     }
 
-    @RequestMapping(
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE,
-            path = "{id}"
-    )
+
+    @RequestMapping(value = "/hammams/{id}", method = RequestMethod.GET)
     public Hammam getById(@PathVariable("id")Long id){
         return hammamService.findById(id);
     }
 
 
-    @RequestMapping(
-            method = RequestMethod.PUT,
-            consumes = MediaType.APPLICATION_JSON_VALUE
-    )
-    public void update(@RequestBody Hammam hammam){
+    @RequestMapping(value = "/hammams/{id}", method = RequestMethod.PUT)
+    public void update(@PathVariable("id") Long id, @RequestBody Hammam hammam){
         hammamService.update(hammam);
     }
-    @RequestMapping(
-            method = RequestMethod.DELETE,
-            path = "{id}"
-
-    )
+    @RequestMapping(value = "/hammams/{id}", method = RequestMethod.DELETE)
     public void remove(@PathVariable("id")Long id){
         hammamService.delete(id);
     }

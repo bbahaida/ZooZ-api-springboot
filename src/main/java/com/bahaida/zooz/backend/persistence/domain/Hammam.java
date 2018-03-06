@@ -12,7 +12,7 @@ public class Hammam implements Serializable {
 
     private String name;
 
-    @OneToMany(mappedBy = "hammam")
+    @OneToMany(mappedBy = "hammam", fetch = FetchType.LAZY)
     private List<Client> clients;
 
     public Hammam() {

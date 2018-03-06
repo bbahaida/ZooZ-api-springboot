@@ -1,5 +1,8 @@
 package com.bahaida.zooz.backend.persistence.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -15,7 +18,7 @@ public class Client implements Serializable{
     private String password;
     private int age;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_hammam")
     private Hammam hammam;
 
@@ -76,5 +79,13 @@ public class Client implements Serializable{
 
     public void setAge(int age) {
         this.age = age;
+    }
+    @JsonIgnore
+    public Hammam getHammam() {
+        return hammam;
+    }
+    @JsonSetter
+    public void setHammam(Hammam hammam) {
+        this.hammam = hammam;
     }
 }
