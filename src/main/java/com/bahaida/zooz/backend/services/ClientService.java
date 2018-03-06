@@ -43,6 +43,6 @@ public class ClientService implements IClientService {
 
     @Override
     public Client login(String login, String password) {
-        return clientRepository.findClientByLoginAndPassword(login,password);
+        return clientRepository.login(login,password);
     }
 }

@@ -21,6 +21,11 @@ public class ClientController {
         return clientService.findAll();
     }
 
+    @RequestMapping(value = "/clients/{id}", method = RequestMethod.GET)
+    public Client getById(@PathVariable("id")Long id){
+        return clientService.findById(id);
+    }
+
     @RequestMapping(value = "/clients", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public Client registration(@RequestBody Client client) {
@@ -28,10 +33,12 @@ public class ClientController {
         return clientService.registartion(client);
     }
 
-    @RequestMapping(value = "/clients/{id}", method = RequestMethod.GET)
-    public Client getById(@PathVariable("id")Long id){
-        return clientService.findById(id);
+    @RequestMapping(value = "/clients/login", method = RequestMethod.POST)
+    public Client login(@RequestBody Client client) {
+
+        return clientService.login(client.getLogin(),client.getPassword());
     }
+
 
     @RequestMapping(value = "/clients/{id}", method = RequestMethod.PUT)
     public void update(@PathVariable("id") Long id, @RequestBody Client client){
