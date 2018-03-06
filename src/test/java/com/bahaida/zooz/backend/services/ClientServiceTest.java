@@ -33,7 +33,6 @@ public class ClientServiceTest {
         user.setLastName("houala");
         user.setLogin("sh");
         user.setPassword("sh");
-        user.setAge(12);
         user.setIdClient((long) 1);
         Mockito.when(clientRepository.save(user)).thenReturn(user);
     }

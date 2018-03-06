@@ -25,6 +25,10 @@ public class ClientController {
     public Client getById(@PathVariable("id")Long id){
         return clientService.findById(id);
     }
+    @RequestMapping(value = "/clients/age/{id}", method = RequestMethod.GET)
+    public int getAge(@PathVariable("id")Long id){
+        return clientService.getAge(id);
+    }
 
     @RequestMapping(value = "/clients", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)

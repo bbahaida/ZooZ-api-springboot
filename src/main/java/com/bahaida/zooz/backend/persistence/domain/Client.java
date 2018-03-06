@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Client implements Serializable{
@@ -16,21 +18,36 @@ public class Client implements Serializable{
     private String lastName;
     private String login;
     private String password;
-    private int age;
+    private String email;
+    private String phone;
+    private int nbChildren;
+    @Temporal(TemporalType.DATE)
+    private Date birthday;
+
+    private boolean menopause;
+
 
     @ManyToOne
     @JoinColumn(name = "id_hammam")
     private Hammam hammam;
 
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    private List<Period> periods;
+
     public Client() {
+        setMenopause(false);
     }
 
-    public Client(String firstName, String lastName, String login, String password, int age) {
+    public Client(String firstName, String lastName, String login, String password, String email, String phone, int nbChildren, Date birthday, boolean menopause) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
         this.password = password;
-        this.age = age;
+        this.email = email;
+        this.phone = phone;
+        this.nbChildren = nbChildren;
+        this.birthday = birthday;
+        this.menopause = menopause;
     }
 
     public Long getIdClient() {
@@ -73,13 +90,54 @@ public class Client implements Serializable{
         this.password = password;
     }
 
-    public int getAge() {
-        return age;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public int getNbChildren() {
+        return nbChildren;
+    }
+
+    public void setNbChildren(int nbChildren) {
+        this.nbChildren = nbChildren;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public boolean isMenopause() {
+        return menopause;
+    }
+
+    public void setMenopause(boolean menopause) {
+        this.menopause = menopause;
+    }
+
+    public List<Period> getPeriods() {
+        return periods;
+    }
+
+    public void setPeriods(List<Period> periods) {
+        this.periods = periods;
+    }
+
     @JsonIgnore
     public Hammam getHammam() {
         return hammam;

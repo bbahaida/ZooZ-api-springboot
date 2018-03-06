@@ -8,7 +8,7 @@ public interface IClientService {
     Client registartion(Client client);
     List<Client> findAll();
     Client findById(Long id);
-
+    int getAge(Long id);
     void update(Client client);
 
     void delete(Long id);

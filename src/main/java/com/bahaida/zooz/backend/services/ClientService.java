@@ -5,6 +5,7 @@ import com.bahaida.zooz.backend.persistence.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -14,7 +15,7 @@ public class ClientService implements IClientService {
     @Override
     public Client registartion(Client client){
 
-        if(client == null || client.getFirstName() == "" || client.getLastName() == "" || client.getLogin() == "" || client.getPassword() == "" || client.getAge() <= 0){
+        if(client == null || client.getFirstName() == "" || client.getLastName() == "" || client.getLogin() == "" || client.getPassword() == "" || client.getBirthday() == null){
             return null;
         }
         return clientRepository.save(client);
@@ -44,5 +45,10 @@ public class ClientService implements IClientService {
     @Override
     public Client login(String login, String password) {
         return clientRepository.login(login,password);
+    }
+
+    @Override
+    public int getAge(Long id) {
+        return new Date().getYear() - clientRepository.getOne(id).getBirthday().getYear();
     }
 }
