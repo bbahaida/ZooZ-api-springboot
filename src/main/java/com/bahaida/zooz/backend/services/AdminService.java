@@ -50,6 +50,6 @@ public class AdminService implements IAdminService {
 
     @Override
     public Admin login(String login, String password) {
-        return null;
+        return adminRepository.login(login,password);
     }
 }

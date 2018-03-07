@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 
-public class HammamController {
+public class HammamRestController {
     @Autowired
     private IHammamService hammamService;
 

@@ -36,6 +36,9 @@ public class Client implements Serializable{
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     private List<Period> periods;
 
+    @OneToMany(mappedBy = "client")
+    private List<Control> controls;
+
     public Client() {
         setMenopause(false);
     }
@@ -147,5 +150,13 @@ public class Client implements Serializable{
     @JsonSetter
     public void setHammam(Hammam hammam) {
         this.hammam = hammam;
+    }
+
+    public List<Control> getControls() {
+        return controls;
+    }
+
+    public void setControls(List<Control> controls) {
+        this.controls = controls;
     }
 }

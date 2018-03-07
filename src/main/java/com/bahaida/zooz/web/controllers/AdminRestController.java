@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class AdminController {
+public class AdminRestController {
     @Autowired
     private IAdminService adminService;
 
