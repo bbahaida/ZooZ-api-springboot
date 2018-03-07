@@ -1,13 +1,16 @@
 package com.bahaida.zooz.backend.persistence.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class Period {
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class Period implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPeriod;
@@ -30,10 +33,11 @@ public class Period {
         this.endDate = endDate;
     }
 
+    @JsonIgnore
     public Long getIdPeriod() {
         return idPeriod;
     }
-
+    @JsonSetter
     public void setIdPeriod(Long idPeriod) {
         this.idPeriod = idPeriod;
     }

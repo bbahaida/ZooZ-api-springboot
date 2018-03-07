@@ -1,10 +1,15 @@
 package com.bahaida.zooz.backend.persistence.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Hammam implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +19,9 @@ public class Hammam implements Serializable {
 
     @OneToMany(mappedBy = "hammam", fetch = FetchType.EAGER)
     private List<Client> clients;
+
+    @OneToMany(mappedBy = "hammam", fetch = FetchType.LAZY)
+    private List<Admin> admins;
 
     public Hammam() {
     }
@@ -44,5 +52,13 @@ public class Hammam implements Serializable {
 
     public void setClients(List<Client> clients) {
         this.clients = clients;
+    }
+
+    public List<Admin> getAdmins() {
+        return admins;
+    }
+
+    public void setAdmins(List<Admin> admins) {
+        this.admins = admins;
     }
 }

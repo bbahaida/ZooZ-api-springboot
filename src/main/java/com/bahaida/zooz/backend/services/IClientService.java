@@ -1,5 +1,6 @@
 package com.bahaida.zooz.backend.services;
 
+import com.bahaida.zooz.backend.persistence.domain.Admin;
 import com.bahaida.zooz.backend.persistence.domain.Client;
 
 import java.util.List;
@@ -9,7 +10,7 @@ public interface IClientService {
     List<Client> findAll();
     Client findById(Long id);
     int getAge(Long id);
-    void update(Client client);
+    Client update(Long id, Client client);
 
     void delete(Long id);
 

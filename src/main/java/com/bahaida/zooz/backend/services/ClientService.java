@@ -1,5 +1,6 @@
 package com.bahaida.zooz.backend.services;
 
+import com.bahaida.zooz.backend.persistence.domain.Admin;
 import com.bahaida.zooz.backend.persistence.domain.Client;
 import com.bahaida.zooz.backend.persistence.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,20 @@ public class ClientService implements IClientService {
     }
 
     @Override
-    public void update(Client client) {
-        clientRepository.save(client);
+    public Client update(Long id, Client client) {
+
+        Client c = clientRepository.getOne(id);
+        c.setFirstName(client.getFirstName() == null ? c.getFirstName() : client.getFirstName());
+        c.setLastName(client.getLastName() == null ? c.getLastName() : client.getLastName());
+        c.setLogin(client.getLogin() == null ? c.getLogin() : client.getLogin());
+        c.setPassword(client.getPassword() == null ? c.getPassword() : client.getPassword());
+        c.setEmail(client.getEmail() == null ? c.getEmail() : client.getEmail());
+        c.setPhone(client.getPhone() == null ? c.getPhone() : client.getPhone());
+        c.setNbChildren(client.getNbChildren() <= 0 ? c.getNbChildren() : client.getNbChildren());
+        c.setMenopause(client.isMenopause() == c.isMenopause() ? c.isMenopause() : client.isMenopause());
+
+
+        return clientRepository.save(c);
     }
 
     @Override

@@ -46,7 +46,8 @@ public class ClientController {
 
     @RequestMapping(value = "/clients/{id}", method = RequestMethod.PUT)
     public void update(@PathVariable("id") Long id, @RequestBody Client client){
-        clientService.update(client);
+
+        clientService.update(id,client);
     }
 
     @RequestMapping(value = "/clients/{id}", method = RequestMethod.DELETE)

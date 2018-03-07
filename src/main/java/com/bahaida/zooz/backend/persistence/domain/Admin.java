@@ -1,20 +1,20 @@
 package com.bahaida.zooz.backend.persistence.domain;
 
+
+import com.bahaida.zooz.enums.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Client implements Serializable{
+public class Admin implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idClient;
+    private Long idAdmin;
 
     private String firstName;
     private String lastName;
@@ -22,42 +22,33 @@ public class Client implements Serializable{
     private String password;
     private String email;
     private String phone;
-    private int nbChildren;
-    @Temporal(TemporalType.DATE)
-    private Date birthday;
 
-    private boolean menopause;
-
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @ManyToOne
-    @JoinColumn(name = "id_hammam")
+    @JoinColumn(name = "id_hamam")
     private Hammam hammam;
 
-    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
-    private List<Period> periods;
-
-    public Client() {
-        setMenopause(false);
+    public Admin() {
     }
 
-    public Client(String firstName, String lastName, String login, String password, String email, String phone, int nbChildren, Date birthday, boolean menopause) {
+    public Admin(String firstName, String lastName, String login, String password, String email, String phone, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
         this.password = password;
         this.email = email;
         this.phone = phone;
-        this.nbChildren = nbChildren;
-        this.birthday = birthday;
-        this.menopause = menopause;
+        this.role = role;
     }
 
-    public Long getIdClient() {
-        return idClient;
+    public Long getIdAdmin() {
+        return idAdmin;
     }
 
-    public void setIdClient(Long idClient) {
-        this.idClient = idClient;
+    public void setIdAdmin(Long idAdmin) {
+        this.idAdmin = idAdmin;
     }
 
     public String getFirstName() {
@@ -108,36 +99,12 @@ public class Client implements Serializable{
         this.phone = phone;
     }
 
-    public int getNbChildren() {
-        return nbChildren;
+    public Role getRole() {
+        return role;
     }
 
-    public void setNbChildren(int nbChildren) {
-        this.nbChildren = nbChildren;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public boolean isMenopause() {
-        return menopause;
-    }
-
-    public void setMenopause(boolean menopause) {
-        this.menopause = menopause;
-    }
-
-    public List<Period> getPeriods() {
-        return periods;
-    }
-
-    public void setPeriods(List<Period> periods) {
-        this.periods = periods;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @JsonIgnore
