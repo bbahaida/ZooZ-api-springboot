@@ -7,35 +7,68 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ *
+ * <b>ControlRestController is the class that manages the web layer of the Client control Services</b>
+ *
+ * <p>more details on <strong><i>{servername}/swagger-ui.html</i></strong></p>
+ *
+ * @author Brahim Bahaida
+ *
+ * @version 1.0
+ *
+ * @since 2018-03-06
+ */
+
 @RestController
+@RequestMapping("/api/controls")
 public class ControlRestController {
 
     @Autowired
     private IControlService controlService;
-
-    @RequestMapping(value = "/controls", method = RequestMethod.GET)
+    /**
+     * Retrieve all the controls.
+     * @return A List data type.
+     */
+    @GetMapping
     public List<Control> getAll(){
         return controlService.findAll();
     }
-
-    @RequestMapping(value = "/controls", method = RequestMethod.POST)
+    /**
+     * Retrieve an control object by ID.
+     * @param id A variable of type Long
+     * @return A Control object.
+     */
+    @GetMapping("/{id}")
+    public Control getById(@PathVariable("id")Long id){
+        return controlService.findById(id);
+    }
+    /**
+     * Add a new control object.
+     * @param control An object of type Control
+     * @return A new Control object.
+     */
+    @PostMapping
     public Control save(@RequestBody Control control) {
 
         return controlService.save(control);
     }
 
-
-    @RequestMapping(value = "/controls/{id}", method = RequestMethod.GET)
-    public Control getById(@PathVariable("id")Long id){
-        return controlService.findById(id);
-    }
-
-
-    @RequestMapping(value = "/controls/{id}", method = RequestMethod.PUT)
+    /**
+     * Update an control object.
+     * @param id A variable of type Long
+     * @param control An object of type Control
+     * @return An Control object.
+     */
+    @PutMapping("/{id}")
     public Control update(@PathVariable("id") Long id, @RequestBody Control control){
         return controlService.update(id,control);
     }
-    @RequestMapping(value = "/controls/{id}", method = RequestMethod.DELETE)
+    /**
+     * Delete an control object by ID.
+     * @param id A variable of type Long
+     */
+    @DeleteMapping("/{id}")
     public void remove(@PathVariable("id")Long id){
         controlService.delete(id);
     }

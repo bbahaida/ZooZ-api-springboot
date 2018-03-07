@@ -7,6 +7,17 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ *
+ * <b>HammamService is the implementation of IHammamService interface that manages the business layer of the Hammam Services</b>
+ *
+ * @author Brahim Bahaida
+ *
+ * @version 1.0
+ *
+ * @since 2018-03-06
+ */
+
 @Service
 public class HammamService implements IHammamService{
 
@@ -28,8 +39,10 @@ public class HammamService implements IHammamService{
     }
 
     @Override
-    public void update(Hammam hammam) {
-        hammamRepository.save(hammam);
+    public Hammam update(Long id, Hammam hammam) {
+        Hammam h = hammamRepository.getOne(id);
+        h.setName(hammam.getName() == null ? h.getName() : hammam.getName());
+        return hammamRepository.save(h);
     }
 
     @Override

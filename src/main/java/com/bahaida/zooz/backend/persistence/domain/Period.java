@@ -33,36 +33,62 @@ public class Period implements Serializable{
         this.endDate = endDate;
     }
 
+    /**
+     * Retrieve the value of Period id.
+     * @return A Long data type.
+     */
     @JsonIgnore
     public Long getIdPeriod() {
         return idPeriod;
     }
+    /**
+     * Set the value of Period id.
+     * @param idPeriod A variable of type Long.
+     */
     @JsonSetter
     public void setIdPeriod(Long idPeriod) {
         this.idPeriod = idPeriod;
     }
-
+    /**
+     * Retrieve the value of Period start date.
+     * @return A Date data type.
+     */
     public Date getStartDate() {
         return startDate;
     }
-
+    /**
+     * Set the value of Period start date.
+     * @param startDate A variable of type Date.
+     */
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
-
+    /**
+     * Retrieve the value of Period end date.
+     * @return A Date data type.
+     */
     public Date getEndDate() {
         return endDate;
     }
-
+    /**
+     * Set the value of Period end date.
+     * @param endDate A variable of type Date.
+     */
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
-
+    /**
+     * Retrieve the value of Client object.
+     * @return A Client data type.
+     */
     @JsonIgnore
     public Client getClient() {
         return client;
     }
-
+    /**
+     * Set the value of Client object.
+     * @param client A variable of type Client.
+     */
     @JsonSetter
     public void setClient(Client client) {
         this.client = client;

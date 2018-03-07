@@ -7,6 +7,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ *
+ * <b>AdminService is implementation of IAdminService interface that manages the business layer of the Hammam Services</b>
+ *
+ * @author Brahim Bahaida
+ *
+ * @version 1.0
+ *
+ * @since 2018-03-06
+ */
 @Service
 public class AdminService implements IAdminService {
 

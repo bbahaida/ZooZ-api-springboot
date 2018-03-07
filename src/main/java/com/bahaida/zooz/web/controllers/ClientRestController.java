@@ -9,48 +9,84 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+/**
+ *
+ * <b>ClientRestController is the class that manages the web layer of the Client Services</b>
+ *
+ * <p>more details on <strong><i>{servername}/swagger-ui.html</i></strong></p>
+ *
+ * @author Brahim Bahaida
+ *
+ * @version 1.0
+ *
+ * @since 2018-03-06
+ */
 
+@RestController
+@RequestMapping("/api/clients")
 public class ClientRestController {
 
     @Autowired
     private IClientService clientService;
 
-    @RequestMapping(value = "/clients", method = RequestMethod.GET)
+    /**
+     * Retrieve all the clients.
+     * @return A List data type.
+     */
+    @GetMapping
     public List<Client> getAll(){
         return clientService.findAll();
     }
 
-    @RequestMapping(value = "/clients/{id}", method = RequestMethod.GET)
+    /**
+     * Retrieve an client object by ID.
+     * @param id A variable of type Long
+     * @return A Client object.
+     */
+    @GetMapping("/{id}")
     public Client getById(@PathVariable("id")Long id){
         return clientService.findById(id);
     }
-    @RequestMapping(value = "/clients/age/{id}", method = RequestMethod.GET)
-    public int getAge(@PathVariable("id")Long id){
-        return clientService.getAge(id);
-    }
 
-    @RequestMapping(value = "/clients", method = RequestMethod.POST)
+    /**
+     * Add a new client object.
+     * @param client An object of type Client
+     * @return A new Client object.
+     */
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Client registration(@RequestBody Client client) {
 
         return clientService.registartion(client);
     }
 
-    @RequestMapping(value = "/clients/login", method = RequestMethod.POST)
+    /**
+     * Retrieve a client object by login and password.
+     * @param client An object of type Client contains only login and password
+     * @return A new Client object.
+     */
+    @PostMapping("/login")
     public Client login(@RequestBody Client client) {
 
         return clientService.login(client.getLogin(),client.getPassword());
     }
 
+    /**
+     * Update an client object.
+     * @param id A variable of type Long
+     * @param client An object of type Client
+     * @return An Client object.
+     */
+    @PutMapping("/{id}")
+    public Client update(@PathVariable("id") Long id, @RequestBody Client client){
 
-    @RequestMapping(value = "/clients/{id}", method = RequestMethod.PUT)
-    public void update(@PathVariable("id") Long id, @RequestBody Client client){
-
-        clientService.update(id,client);
+        return clientService.update(id,client);
     }
-
-    @RequestMapping(value = "/clients/{id}", method = RequestMethod.DELETE)
+    /**
+     * Delete an client object by ID.
+     * @param id A variable of type Long
+     */
+    @DeleteMapping("/{id}")
     public void remove(@PathVariable("id") Long id){
         clientService.delete(id);
     }

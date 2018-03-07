@@ -1,0 +1,8 @@
+com.bahaida.zooz
+com.bahaida.zooz.backend.persistence.domain
+com.bahaida.zooz.backend.persistence.repositories
+com.bahaida.zooz.backend.services
+com.bahaida.zooz.config
+com.bahaida.zooz.enums
+com.bahaida.zooz.exceptions
+com.bahaida.zooz.web.controllers

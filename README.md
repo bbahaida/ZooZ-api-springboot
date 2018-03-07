@@ -1,19 +1,19 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
 
 ### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* Cette application cible exclusivement les des bains maures et particulièrement les bains maures femmes Mayorka. La cible est technophile, elle utilise son mobile plus d’une heure par jour, veut s’auto-examiner les seins, et se représente principalement les femmes.
+* Version 1.0
 
 ### How do I get set up? ###
 
 * Summary of set up
 * Configuration
-* Dependencies
-* Database configuration
+* Dependencies : 
+All dependencies are reported in pom.xml 
+* Database configuration :
+You should create a database with the same name in application.properties 
 * How to run tests
 * Deployment instructions
 

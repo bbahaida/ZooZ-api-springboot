@@ -6,6 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+/**
+ *
+ * <b>PeriodService is the implementation of IPeriodService interface that manages the business layer of the Client period Services</b>
+ *
+ * @author Brahim Bahaida
+ *
+ * @version 1.0
+ *
+ * @since 2018-03-06
+ */
 
 @Service
 public class PeriodService implements IPeriodService {
@@ -31,8 +41,11 @@ public class PeriodService implements IPeriodService {
     }
 
     @Override
-    public void update(Period period) {
-        periodRepository.save(period);
+    public Period update(Long id, Period period) {
+        Period p = periodRepository.getOne(id);
+        p.setStartDate(period.getStartDate() == null ? p.getStartDate() : period.getStartDate());
+        p.setEndDate(period.getEndDate() == null ? p.getEndDate() : period.getEndDate());
+        return periodRepository.save(p);
     }
 
     @Override
